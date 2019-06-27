@@ -22,6 +22,14 @@ def callback(data):
     
     if(arr[0] == 'go')
         if arr[2] in locationMap
+	    pub = rospy.Publisher('Move',String,queue_size = 2)
+	    #initialize the move topic
+            move=moveTopic()
+	    #store location
+            move.x=locationMap[data.data[0]]
+            move.y=locationMap[data.data[1]]
+            move.z=locationMap[data.data[2]]
+            p.publish(move)
             #publish to move
         else
             #do nothing
@@ -37,11 +45,7 @@ def callback(data):
         if arr[2] in locationMap
             del locationMap[arr2]
             #publish to removeMap
-
-    #publish location to be read by      
-    pub = rospy.Publisher('Move',String,queue_size = 2)
-    p.publish()
-
+	
 def listener():
  
      # In ROS, nodes are uniquely named. If two nodes with the same
