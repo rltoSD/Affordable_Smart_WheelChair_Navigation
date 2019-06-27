@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 
 import rospy
 import numpy as np
@@ -27,7 +28,8 @@ def callback(data):
 
     else if(arr[0] == 'mark')
         if arr[2] in locationMap
-	    arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z]		    locationMap[arr[2]i] = arrOdometry
+	    arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z]
+            locationMap[arr[2]i] = arrOdometry
             #publish to map
         else
             #do nothing
