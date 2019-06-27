@@ -2,6 +2,7 @@
 import rospy
 from nav_msgs.msg import Odometry
 
+# called when publisher publishes to topic
 def callback(data):
 	#subscribes and grabs x,y,z position for Odometry
 	x=data.pose.pose.position.x
