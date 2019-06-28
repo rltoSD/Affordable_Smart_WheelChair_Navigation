@@ -3,13 +3,13 @@
 import rospy
 from std_msgs.msg import Float32, String
 
-# Import the FSM and the states
-from FSM.state_machine import StateMachine
-from FSM.start_state import StartState
-from FSM.mapping_state import MappingState
-from FSM.logging_state import LoggingState
-from FSM.nav_ready_state import NavigationReadyState
-from FSM.navigating_state import NavigatingState
+# Import the Nodes and the states
+from Nodes.state_machine import StateMachine
+from Nodes.start_state import StartState
+from Nodes.mapping_state import MappingState
+from Nodes.logging_state import LoggingState
+from Nodes.nav_ready_state import NavigationReadyState
+from Nodes.navigating_state import NavigatingState
 
 # action = (start_mapping, start_logging, map_built, goal_received, goal_reached)
 # indices for the events
