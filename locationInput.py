@@ -4,7 +4,7 @@ import rospy
 import numpy as np
 from std_msgs.msg import String
 from nav_msgs.msg import Odometry
-from MoveTopic.msg import float64
+from move_topic.msg import float64
 
 def callback(data):
     #try to get our dictionary with locations and coordinates
@@ -28,7 +28,7 @@ def callback(data):
             #publish location to be read by SLAM
             pub1 = rospy.Publisher('MoveTopic',float64,queue_size = 1)
             r = rospy.Rate(1)
-            msg=MoveTopic()
+            msg=move_topic()
             msg.x=locationMap[data.data[0]]
             msg.y=locationMap[data.data[1]]
             msg.z=locationMap[data.data[2]]
