@@ -19,12 +19,18 @@ def callback(data):
         #check that the location is marked on map
         if arr[2] in locationMap:
             #publish location to be read by SLAM
+            #creates a node
+            rospy.init_node("input_Node")
+            #publishes
             pub1 = rospy.Publisher('MoveTopic',float64,queue_size = 1)
             r = rospy.Rate(1)
+            #initializes a new move topic message
             msg=move_topic()
+            #stores information into that message
             msg.x=locationMap[data.data[0]]
             msg.y=locationMap[data.data[1]]
             msg.z=locationMap[data.data[2]]
+            #publishes to the topic
             pub1.publish(msg)
             r.sleep()
         else:
