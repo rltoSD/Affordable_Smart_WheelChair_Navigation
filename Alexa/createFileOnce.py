@@ -1,5 +1,5 @@
 #only needs to be ran once using "python ./createFileOnce.py"
-#creates a empty dictionary file which we will load in loadDictionary
+#creates a empty dictionary file which we will load in location input
 import numpy as np
 
 def main():
