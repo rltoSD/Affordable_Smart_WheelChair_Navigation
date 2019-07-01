@@ -1,0 +1,12 @@
+float64 sensor1
+float64 sensor2
+float64 sensor3
+float64 sensor4
+float64 sensor5
+float64 sensor6
+float64 sensor7
+float64 sensor8
+float64 sensor9
+float64 sensor10
+float64 sensor11
+float64 sensor12
