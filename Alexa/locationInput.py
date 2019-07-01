@@ -26,10 +26,12 @@ def callback(data):
             r = rospy.Rate(1)
             #initializes a new move topic message
             msg=move_topic()
+           
+            array = locationMap[arr[2]]
             #stores information into that message
-            msg.x=locationMap[data.data[0]]
-            msg.y=locationMap[data.data[1]]
-            msg.z=locationMap[data.data[2]]
+            msg.x= array[0]
+            msg.y= array[1]
+            msg.z= array[2]
             #publishes to the topic
             pub1.publish(msg)
             r.sleep()
@@ -44,11 +46,13 @@ def callback(data):
         else:
             arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z]
             locationMap[arr[2]] = arrOdometry
+            np.save("dictionary.npy",locationMap)
 
     #if command is to delete a saved location
     else if arr[0] == 'delete':
         if arr[2] in locationMap:
-            del locationMap[arr2]
+            locationMap.pop(arr[2])
+            np.save("dictionary.npy",locationMap)
         else:
             rospy.loginfo("Location not found : %s",arr[2])
 
