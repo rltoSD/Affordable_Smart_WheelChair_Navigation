@@ -21,7 +21,7 @@ def callback(data):
         angular_y=data.twist.twist.angular.y
         angular_z=data.twist.twist.angular.z
         #prints it to terminal
-        rospy.loginfo('x: {}, y: {}, z {}'.format(x,y,z)
+        rospy.loginfo('x: {}, y: {}, z {}'.format(x,y,z))
         rospy.loginfo('orientation_x: {}, orientation_y: {}, orientation_w {}, orientation_z {}'.format(orientation_x,orientation_y,orientation_w,orientation_z))
         rospy.loginfo('linear_x: {}, linear_y: {}, linear_z {}'.format(linear_x,linear_y,linear_z))
         rospy.loginfo('angular_x: {}, angular_y: {}, angular_z {}'.format(angular_x,angular_y,angular_z))
