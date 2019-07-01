@@ -6,6 +6,7 @@ def callback(data):
 	label=data.layout.dim[0].label
 	size=data.layout.dim[0].size
 	stride=data.layout.dim[0].stride
+	rospy.loginfo('label: {}, size: {}, stride: {}'.format(label,size,stride))
 def main():
 	rospy.init_node('TFS_Information')
 	rospy.subscriber("/Float64MultiArray", Float64MultiArray, callback)
