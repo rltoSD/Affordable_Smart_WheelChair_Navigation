@@ -4,7 +4,7 @@ import rospy
 import numpy as np
 from std_msgs.msg import String
 from nav_msgs.msg import Odometry
-from move_topic.msgs import move_msg
+from alexa_msgs.msgs import move_msg
 
 def callback(data):
     
