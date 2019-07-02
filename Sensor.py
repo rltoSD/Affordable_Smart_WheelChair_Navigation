@@ -9,7 +9,7 @@ def callback(data):
 	rospy.loginfo('label: {}, size: {}, stride: {}'.format(label,size,stride))
 def main():
 	rospy.init_node('TFS_Information')
-	rospy.subscriber("/Float64MultiArray", Float64MultiArray, callback)
+	rospy.subscriber("/tof_sensor", Float64MultiArray, callback)
 	rospy.spin()
 if __name__== '__main__':
 	main()
