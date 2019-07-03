@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 import rospy
 from std_msgs.msg import Float64MultiArray
-
+#callback to grab topic data
 def callback(data):
+        #grabs and stores sensor data from the Float64MultiArray Topic
         sensor_one=data.data[0]
         sensor_two=data.data[1]
         sensor_three=data.data[2]
@@ -15,6 +16,7 @@ def callback(data):
         sensor_ten=data.data[9]
         sensor_eleven=data.data[10]
         sensor_twelve=data.data[11]
+        #prints data to terminal
         rospy.loginfo('sensor_1: {}'.format(sensor_one))
         rospy.loginfo('sensor_2: {}'.format(sensor_two))
         rospy.loginfo('sensor_3: {}'.format(sensor_three))
@@ -28,7 +30,9 @@ def callback(data):
         rospy.loginfo('sensor_11: {}'.format(sensor_eleven))
         rospy.loginfo('sensor_12: {}'.format(sensor_twelve))
 def main():
+        #new node
         rospy.init_node('TFS_Information')
+        #subscribes to "tof_sensor" topic
         rospy.subscriber("/tof_sensor", Float64MultiArray, callback)
         rospy.spin()
 if __name__== '__main__':
