@@ -42,19 +42,19 @@ def callback(data):
     else if arr[0] == 'mark':
         #check that its not already marked
         if arr[4] in locationMap:
-            rospy.loginfo("Location %s already marked",arr[2])
+            rospy.loginfo("Location %s already marked",arr[4])
         else:
             arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z]
-            locationMap[arr[2]] = arrOdometry
+            locationMap[arr[4]] = arrOdometry
             np.save("dictionary.npy",locationMap)
 
     #if command is to delete a saved location
     else if arr[0] == 'delete':
         if arr[6] in locationMap:
-            locationMap.pop(arr[2])
+            locationMap.pop(arr[6])
             np.save("dictionary.npy",locationMap)
         else:
-            rospy.loginfo("Location not found : %s",arr[2])
+            rospy.loginfo("Location not found : %s",arr[6])
 
 def listener():
 
