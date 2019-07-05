@@ -41,7 +41,7 @@ def callback(data):
     #if command wants to set new location
     else if arr[0] == 'mark':
         #check that its not already marked
-        if arr[2] in locationMap:
+        if arr[4] in locationMap:
             rospy.loginfo("Location %s already marked",arr[2])
         else:
             arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z]
@@ -50,7 +50,7 @@ def callback(data):
 
     #if command is to delete a saved location
     else if arr[0] == 'delete':
-        if arr[2] in locationMap:
+        if arr[6] in locationMap:
             locationMap.pop(arr[2])
             np.save("dictionary.npy",locationMap)
         else:
