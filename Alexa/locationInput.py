@@ -22,7 +22,7 @@ def callback(data):
             #creates a node
             rospy.init_node("input_Node")
             #publishes
-            pub1 = rospy.Publisher('MoveTopic',float64,queue_size = 1)
+            pub1 = rospy.Publisher('MoveTopic',move_msg,queue_size = 1)
             r = rospy.Rate(1)
             #initializes a new move topic message
             msg=move_topic()
