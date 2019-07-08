@@ -11,9 +11,9 @@ theta = 0.0
 
 #set the goal you want to reach
 #will add subscriber to take this from user input
-goal = Point()
-goal.x = 0.0 
-goal.y = 0.0
+
+goalx = 0.0 
+goaly = 0.0
 
 def newOdom(msg):
     global x
@@ -29,9 +29,10 @@ def newOdom(msg):
 
 def setGoal(msg)
     #i dont know if i did this part correctly since its a point
-    global goal
-    goal.x = msg.x
-    goal.y = msg.y
+    global goalx
+    global goaly
+    goalx = msg.x
+    goaly = msg.y
 
 rospy.init_node("speed_controller")
 
