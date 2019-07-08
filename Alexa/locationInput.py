@@ -32,6 +32,10 @@ def callback(data):
             msg.x= array[0]
             msg.y= array[1]
             msg.z= array[2]
+            msg.ax= array[3]
+            msg.ax= array[4]
+            msg.ax= array[5]
+
             #publishes to the topic
             pub1.publish(msg)
             r.sleep()
@@ -44,7 +48,8 @@ def callback(data):
         if arr[4] in locationMap:
             rospy.loginfo("Location %s already marked",arr[4])
         else:
-            arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z]
+            arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z
+                          data.twist.twist.angular.x, data.twist.twist.angular.y, data.twist.twist.angular.z]
             locationMap[arr[4]] = arrOdometry
             np.save("dictionary.npy",locationMap)
 
