@@ -29,9 +29,6 @@ def newOdom(msg):
 def setGoal(msg)
     #i dont know if i did this part correctly since its a point
     global goal
-    global goal.x
-    global goal.y
-
     goal.x = msg.x
     goal.y = msg.y
 
