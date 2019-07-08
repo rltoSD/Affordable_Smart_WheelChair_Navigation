@@ -6,6 +6,15 @@ from std_msgs.msg import String
 from nav_msgs.msg import Odometry
 from alexa_msgs.msgs import move_msg
 
+x = 0.0 
+y = 0.0
+z = 0.0 
+
+def getOdom(data):
+    x = msg.pose.pose.position.x
+    y = msg.pose.pose.position.y
+    z = msg.pose.pose.position.z
+    
 def callback(data):
     
     #load the dictionary assuming this file is already created
@@ -26,15 +35,11 @@ def callback(data):
             r = rospy.Rate(1)
             #initializes a new move topic message
             msg=move_topic()
-           
+            #get location information from dictionary
             array = locationMap[arr[2]]
-            #stores information into that message
             msg.x= array[0]
             msg.y= array[1]
             msg.z= array[2]
-            msg.ax= array[3]
-            msg.ax= array[4]
-            msg.ax= array[5]
 
             #publishes to the topic
             pub1.publish(msg)
@@ -45,12 +50,13 @@ def callback(data):
     #if command wants to set new location
     else if arr[0] == 'mark':
         #check that its not already marked
-        if arr[4] in locationMap:
-            rospy.loginfo("Location %s already marked",arr[4])
+        if arr[2] in locationMap:
+            rospy.loginfo("Location %s already marked",arr[2])
         else:
-            arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z
-                          data.twist.twist.angular.x, data.twist.twist.angular.y, data.twist.twist.angular.z]
-            locationMap[arr[4]] = arrOdometry
+            sub = rospy.Subscriber("/odom", Odometry,getOdom)
+            #gets odometry information
+            arrOdometry = [x,y,z]
+            locationMap[arr[2]] = arrOdometry
             np.save("dictionary.npy",locationMap)
 
     #if command is to delete a saved location
