@@ -55,11 +55,11 @@ def callback(data):
 
     #if command is to delete a saved location
     else if arr[0] == 'delete':
-        if arr[6] in locationMap:
-            locationMap.pop(arr[6])
+        if arr[2] in locationMap:
+            locationMap.pop(arr[2])
             np.save("dictionary.npy",locationMap)
         else:
-            rospy.loginfo("Location not found : %s",arr[6])
+            rospy.loginfo("Location not found : %s",arr[2])
 
 def listener():
 
