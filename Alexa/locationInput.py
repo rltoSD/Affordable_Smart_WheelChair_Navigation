@@ -8,15 +8,12 @@ from alexa_msgs.msgs import move_msg
 
 x = 0.0 
 y = 0.0
-z = 0.0 
 
 def getOdom(data):
     global x
     global y
-    global z
     x = msg.pose.pose.position.x
     y = msg.pose.pose.position.y
-    z = msg.pose.pose.position.z
     
 def callback(data):
     
@@ -42,7 +39,6 @@ def callback(data):
             array = locationMap[arr[2]]
             msg.x= array[0]
             msg.y= array[1]
-            msg.z= array[2]
 
             #publishes to the topic
             pub1.publish(msg)
@@ -58,7 +54,7 @@ def callback(data):
         else:
             sub = rospy.Subscriber("/odom", Odometry,getOdom)
             #gets odometry information
-            arrOdometry = [x,y,z]
+            arrOdometry = [x,y]
             locationMap[arr[2]] = arrOdometry
             np.save("dictionary.npy",locationMap)
 
