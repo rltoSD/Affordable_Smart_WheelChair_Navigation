@@ -11,6 +11,9 @@ y = 0.0
 z = 0.0 
 
 def getOdom(data):
+    global x
+    global y
+    global z
     x = msg.pose.pose.position.x
     y = msg.pose.pose.position.y
     z = msg.pose.pose.position.z
@@ -34,7 +37,7 @@ def callback(data):
             pub1 = rospy.Publisher('MoveTopic',move_msg,queue_size = 1)
             r = rospy.Rate(1)
             #initializes a new move topic message
-            msg=move_topic()
+            msg = move_msg()
             #get location information from dictionary
             array = locationMap[arr[2]]
             msg.x= array[0]
