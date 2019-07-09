@@ -57,7 +57,8 @@ def callback(data):
             		pub1.publish(msg)
 			r.sleep()
 	else:
-			 rospy.loginfo("Location %s is not found : %s",arr[2])	        else if arr[0] == 'mark':
+			 rospy.loginfo("Location %s is not found : %s",arr[2])	        
+	else if arr[0] == 'mark':
 		if arr[4] in locationMap:
 			rospy.loginfo("Location %s exists", arr[4])
 		else:
