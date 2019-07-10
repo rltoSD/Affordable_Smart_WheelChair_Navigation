@@ -5,6 +5,7 @@ from tf.transformations import euler_from_quaternion
 from geometry_msgs.msg import Point, Twist
 from math import atan2
 
+#will hold wheelchairs current odometry globaly
 x = 0.0 
 y = 0.0
 theta = 0.0 
@@ -15,6 +16,7 @@ theta = 0.0
 goalx = 0.0 
 goaly = 0.0
 
+#gets odometry information of wheelchair from odom topic
 def newOdom(msg):
     global x
     global y
@@ -28,7 +30,7 @@ def newOdom(msg):
     (roll,pitch,theta) = euler_from_quaternion ([rot_q.x, rot_q.y, rot_q.z, rot_q.w])
 
 def setGoal(msg)
-    #i dont know if i did this part correctly since its a point
+    #sets global variables by using MoveTopic
     global goalx
     global goaly
     goalx = msg.x
@@ -41,7 +43,7 @@ sub = rospy.Subscriber("/odom", Odometry, newOdom)
 #publish movement to be made
 pub = rospy.Publisher("/cmd_vel", Twist,queue_size = 1)
 
-#subto desired position
+#sub to goal location which is published in locationinput
 move = rospy.Subscriber("MoveTopic", move_msg, setGoal)
 
 #controls speed
@@ -49,8 +51,8 @@ speed = Twist()
 
 r = rospy.Rate(4)
 
+#condition for loop
 abool = True
-
 while abool:
     #to calculate angle
     inc_x = goal.x - x
@@ -61,14 +63,14 @@ while abool:
         abool = False
         continue    
 
-    #calculate angle to turn in order to     
+    #calculate angle to turn 
     angle_to_goal = atan2(inc_y, inc_x)
 
     #should point the chair in the right direction
     if abs(angle_to_goal - theta) > 0.1:
         speed.linear.x = 0.0
         speed.angular.z = 0.3
-    #once its there it should go forward
+    #once its facing the point it should go forward
     else:
         speed.linear.x = 0.5
         speed.angular.z = 0.0
