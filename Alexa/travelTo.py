@@ -77,6 +77,8 @@ while abool:
     
 
     pub.publish(speed)
+    rospy.spin()
     r.sleep()
+    
 
 
