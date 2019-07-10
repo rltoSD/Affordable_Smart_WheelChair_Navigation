@@ -28,9 +28,6 @@ def callback(data):
         #check that the location is marked on map
         if arr[2] in locationMap:
             #publish location to be read by SLAM
-            #creates a node
-            rospy.init_node("input_Node")
-            #publishes
             pub1 = rospy.Publisher('MoveTopic',move_msg,queue_size = 1)
             r = rospy.Rate(1)
             #initializes a new move topic message
