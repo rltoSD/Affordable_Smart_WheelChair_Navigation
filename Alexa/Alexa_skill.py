@@ -20,11 +20,15 @@ def welcome():
 def movement(first):
 	global input
 	input = first
+	text = "The location is {}".format(input) 			
+	return statement(text)
+def talker()
 	rospy.Publisher('chatter', int64, queue_size=1)
 	rospy.init_node('input', anonymous=True)
 	while not rospy.is_shutdown():
 		rospy.loginfo(input)
 		pub.publish(input)
 		rate.sleep()
-	text = "The location is {}".format(input) 			
-	return statement(text)
+if __name__ == '__main__':
+    app.run(debug=True)
+    talker()
