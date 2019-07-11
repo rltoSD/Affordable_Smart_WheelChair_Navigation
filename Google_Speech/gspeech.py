@@ -7,27 +7,31 @@ from gspeech_input_msg import input
 from google.cloud import speech
 from std_msgs.msg import String, Header
 from nav_msgs.msg import Odometry
-
+#magic numbers
 minConfidence = 0.98
 saveTranscript = ""
 saveConfidence = 0.0
 inputTuple = (saveTranscript, saveConfidence)
 storage = []
-
+#method to set global variables
 def setVar(data):
 	global saveTranscript
 	global saveConfidence
 	global inputTuple
+	#saves and initializes global variables
 	saveTranscript=input.transcript
 	saveConfidence=input.confidence
 	inputTuple=(saveTranscript, saveConfidence)
-
+#saves the data inputted to a text and numpy file
 def save(data):
+	#opens the output.txt file for edit
 	text_file=open("output.txt", "w")
+	#writes the confidence and transcript
 	text_file.write(saveTranscript)
 	text_file.write(saveConfidence)
 	text_file.close()
 	storage.append(inputTuple)
+	#save the array to numpy
 	np.save('transcript_history.npy',storage)
 
 def callback(data):
@@ -52,8 +56,8 @@ def callback(data):
             		msg.y= array[1]
             		msg.z= array[2]
             		msg.ax= array[3]
-            		msg.ax= array[4]
-            		msg.ax= array[5]
+            		msg.ay= array[4]
+            		msg.az= array[5]
             		pub1.publish(msg)
 			r.sleep()
 	else:
