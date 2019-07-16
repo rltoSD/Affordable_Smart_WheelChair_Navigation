@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import speech_recognition as sr
 #the following name is only used as an example
-mic_name = "MacBook Pro Microphone"
+mic_name = ""
 #Sample rate is how often values are recorded
 #Initialize the recognizer
 r = sr.Recognizer()
