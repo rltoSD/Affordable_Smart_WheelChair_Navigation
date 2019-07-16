@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import speech_recognition as sr
+import rospy
 #the following name is only used as an example
 text = ""
 mic_name = "MacBook Pro Microphone"
