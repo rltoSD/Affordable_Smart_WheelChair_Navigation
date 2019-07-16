@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import speech_recognition as sr
 #the following name is only used as an example
-mic_name = ""
+text = ""
+mic_name = "MacBook Pro Microphone"
 #Sample rate is how often values are recorded
 #Initialize the recognizer
 r = sr.Recognizer()
@@ -26,9 +27,16 @@ with sr.Microphone(device_index = device_id, sample_rate = 48000,
     audio = r.listen(source)
 
     try:
+        global text
         text = r.recognize_google(audio)
         print text
-
+        pub = rospy.Publisher('chatter', String, queue_size=10)
+        rospy.init_node('talker', anonymous=True)
+        rate = rospy.Rate(10) # 10hz
+        while not rospy.is_shutdown():
+           rospy.loginfo(text)
+           pub.publish(text)
+           rate.sleep()
     #error occurs when google could not understand what was said
 
     except sr.UnknownValueError:
