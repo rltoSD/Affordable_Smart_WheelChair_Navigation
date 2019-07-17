@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import rospy
+import numpy as np
 from std_msgs.msg import String
 from nav_msgs.msg import Odometry
 
@@ -23,7 +24,10 @@ def callbackString(data):
         global text
         global textArr
         text = data.data
+        text.lower()
         textArr = data.data.split(" ")
+        if len(textArr) != 3:
+                print 'Length of command not 3'
         if textArr[0] == 'go':
                 print 'i am here'
                 if textArr[2] in location:
