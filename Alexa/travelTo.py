@@ -44,7 +44,7 @@ sub = rospy.Subscriber('/odom", Odometry, newOdom)
 pub = rospy.Publisher("/cmd_vel", Twist,queue_size = 1)
 
 #sub to goal location which is published in locationinput
-move = rospy.Subscriber("MoveTopic", move_msg, setGoal)
+move = rospy.Subscriber("/newOdom", move_msg, setGoal)
 
 #controls speed
 speed = Twist()
