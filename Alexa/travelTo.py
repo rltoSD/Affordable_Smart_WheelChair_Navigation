@@ -39,7 +39,7 @@ def setGoal(msg)
 rospy.init_node("speed_controller")
 
 #sub to Odometry info
-sub = rospy.Subscriber("/odom", Odometry, newOdom)
+sub = rospy.Subscriber('/odom", Odometry, newOdom)
 #publish movement to be made
 pub = rospy.Publisher("/cmd_vel", Twist,queue_size = 1)
 
