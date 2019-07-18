@@ -74,6 +74,7 @@ def callbackString(data):
         elif textArr[0] == 'remove':
                 #checks if location is in the dictionary
                 if textArr[2] in location:
+                        print "Location " + textArr[2] + " removed"
                         #removes it
                         location.pop(textArr[2])
                         #saves again
