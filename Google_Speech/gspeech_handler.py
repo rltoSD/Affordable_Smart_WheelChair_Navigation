@@ -45,7 +45,7 @@ def callbackString(data):
         if len(textArr) < 3:
                 print 'Length of command not 3'
         #detects if the command is go
-        elif textArr[0] == 'go':
+        elif textArr[0] == 'go' or textArr[0] == 'move':
                 #checks if the location is in the dictionary
                 if textArr[2] in location:
                         print "going to location " + textArr[2]
@@ -59,7 +59,7 @@ def callbackString(data):
                 else:
                         print "Location not in Dictionary"
         #handles marking locations
-        elif textArr[0] == 'mark':
+        elif textArr[0] == 'mark' or textArr[0] == 'mike' or textArr[0] == 'marked' or textArr[0] == 'add' or textArr[0] == 'set':
                 if textArr[2] in location:
                         print "Location already marked"
                 else:
@@ -71,7 +71,7 @@ def callbackString(data):
                         #saves location to numpy for future use
                         np.save("Dictionary.npy", location)
         #handles removing a location
-        elif textArr[0] == 'remove':
+        elif textArr[0] == 'remove' or textArr[0] == 'delete' :
                 #checks if location is in the dictionary
                 if textArr[2] in location:
                         print "Location " + textArr[2] + " removed"
