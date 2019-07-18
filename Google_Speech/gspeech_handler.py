@@ -24,7 +24,7 @@ def callbackOdom(data):
 #method to make use of the string
 def callbackString(data):
         #loads the dictionary for stored locations or locations to be stored
-        location = np.load("storage.npy").item()
+        location = np.load("Dictionary.npy").item()
         text = ""
         textArr = []
         #grabs the text from the ros chatter topic and lowercases it
@@ -59,7 +59,7 @@ def callbackString(data):
                         #stores it in location
                         location[arr[2]] = arrOdom
                         #saves location to numpy for future use
-                        np.save("storage.npy", location)
+                        np.save("Dictionary.npy", location)
         #handles removing a location
         elif textArr[0] == 'remove':
                 #checks if location is in the dictionary
@@ -67,7 +67,7 @@ def callbackString(data):
                         #removes it
                         location.pop(textArr[2])
                         #saves again
-                        np.save("storage.npy", locationMap)
+                        np.save("Dictionary.npy", locationMap)
                 else:
                         print "Location not found"
 
