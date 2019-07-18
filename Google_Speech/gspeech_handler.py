@@ -32,14 +32,23 @@ def callbackString(data):
         text = text.lower()
         #initialize to an array for easy access of each word
         textArr = text.split(" ")
+        
+        #if uttterance is longer than 3 words
+        if len(textArr) > 3:
+                i=3
+                #loops through the array and combines everything after index 3
+                while i < len(textArr):
+                        textArr[2] = textArr[2] + textArr[i]
+                        i += 1
+        
         #edge case for sentences longer than 3 words
-        if len(textArr) != 3:
+        if len(textArr) < 3:
                 print 'Length of command not 3'
         #detects if the command is go
-        if textArr[0] == 'go':
-                print 'i am here'
+        elif textArr[0] == 'go':
                 #checks if the location is in the dictionary
                 if textArr[2] in location:
+                        print "going to location " + textArr[2]
                         #sets the array stored in location to array
                         array = location[textArr[2]]
                         #grabs location data x,y,z to publish to newOdom topic
@@ -48,12 +57,13 @@ def callbackString(data):
                         newOdom.pose.pose.position.z = array[2]
                         pub.publish(newOdom)
                 else:
-                        print "Location not found"
+                        print "Location not in Dictionary"
         #handles marking locations
         elif textArr[0] == 'mark':
                 if textArr[2] in location:
                         print "Location already marked"
                 else:
+                        print "marking location " + textArr[2]
                         #stores current location to arrOdom
                         arrOdom = [x,y,z]
                         #stores it in location
