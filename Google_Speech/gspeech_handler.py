@@ -1,3 +1,10 @@
+##################################################################
+# Utilizes google speech in order to receive voice input
+# reads commands go to ..., mark location ..., delete location ...
+# etc. and handles these commands to see whether we need to
+# store the information, publish Odometry information, or 
+# delete information.
+##################################################################
 #!/usr/bin/env python
 import rospy
 import numpy as np
@@ -32,7 +39,7 @@ def callbackString(data):
         text = text.lower()
         #initialize to an array for easy access of each word
         textArr = text.split(" ")
-        
+        mark = ["mark", "mike", "marked", "add", "set"]
         #if uttterance is longer than 3 words
         if len(textArr) > 3:
                 i=3
@@ -59,7 +66,7 @@ def callbackString(data):
                 else:
                         print "Location not in Dictionary"
         #handles marking locations
-        elif textArr[0] == 'mark' or textArr[0] == 'mike' or textArr[0] == 'marked' or textArr[0] == 'add' or textArr[0] == 'set':
+        elif textArr[0] in mark:
                 if textArr[2] in location:
                         print "Location already marked"
                 else:
