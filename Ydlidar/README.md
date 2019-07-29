@@ -7,6 +7,10 @@ the room.
 the reason why we use roslaunch instead
 of rosrun is because of the fact that
 roslaunch allows us to run the master node
+Add Map in RViz bottom left
+to this Map dropdown
+make Status = /map
+make Topic = /map
 
 #Instructions to get the kobuki working
 roslaunch kobuki_node minimal.launch --screen                                                   
