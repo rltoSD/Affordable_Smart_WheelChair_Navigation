@@ -63,8 +63,8 @@ def callback(data):
 	else:
 			 rospy.loginfo("Location %s is not found : %s",arr[2])	        
 	else if arr[0] == 'mark':
-		if arr[4] in locationMap:
-			rospy.loginfo("Location %s exists", arr[4])
+		if arr[2] in locationMap:
+			rospy.loginfo("Location %s exists", arr[2])
 		else:
 			arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z,data.twist.twist.angular.x, data.twist.twist.angular.y, data.twist.twist.angular.z]
             		locationMap[arr[4]] = arrOdometry
