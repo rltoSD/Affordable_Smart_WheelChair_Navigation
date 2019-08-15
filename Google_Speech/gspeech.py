@@ -67,7 +67,7 @@ def callback(data):
 			rospy.loginfo("Location %s exists", arr[2])
 		else:
 			arrOdometry = [data.pose.pose.position.x,data.pose.pose.position.y,data.pose.pose.position.z,data.twist.twist.angular.x, data.twist.twist.angular.y, data.twist.twist.angular.z]
-            		locationMap[arr[4]] = arrOdometry
+            		locationMap[arr[2]] = arrOdometry
             		np.save("dictionary.npy",locationMap)
 	else if arr[0] == 'delete':
         	if arr[2] in locationMap:
