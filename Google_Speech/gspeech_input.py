@@ -62,3 +62,6 @@ with sr.Microphone(device_index = device_id, sample_rate = 48000,
         #text that is to be said
         tts = gTTS(text='There is no internet connection', lang='en')
         #save to a mp3 file for voice output
+        tts.save("input.mp3")
+        os.system("mpg321 input.mp3")
+        print("There is no internet connection; {0}".format(e))
