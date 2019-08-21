@@ -17,18 +17,27 @@ for i, microphone_name in enumerate(mic_list):
     if microphone_name == mic_name:
         device_id = i
 
+#method that will do text to speech and ask the user
+#where they want to go
+#@param value
+#@return none
+def textToSpeech(value):
+    tts = gTTS(text='Where to', lang='en')
+    #saves to mp3 so it can be used for speech
+    tts.save("input.mp3")
+    os.system("mpg321 input.mp3")
+    
 #use the microphone as source for input. Here, we also specify
 #which device ID to specifically look for incase the microphone
 #is not working, an error will pop up saying "device_id undefined"
 with sr.Microphone(device_index = device_id, sample_rate = 48000,
                         chunk_size = 1024) as source:
-    #text to speech
-    tts = gTTS(text='Where do you want to go?', lang='en')
-    #saves to mp3 so it can be used for speech
-    tts.save("input.mp3")
-    os.system("mpg321 input.mp3")
+    #setup thread
+    t = threading.Thread(target=textToSpeech, args=(1,))
+    #start thread in background
+    t.start()
     #case in which there is ambient noise
-    r.adjust_for_ambient_noise(source)
+    r.adjust_for_ambient_noise(source, duration = 1.7)
     print ("Where do you want to go?")
     #listens for the user's input
     audio = r.listen(source)
