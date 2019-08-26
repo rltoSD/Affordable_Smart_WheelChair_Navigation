@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="gmapping_navigation" type="goal.py" name="move_base_action_client" output="screen" />
+</launch>
