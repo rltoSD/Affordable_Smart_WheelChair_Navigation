@@ -1,14 +1,14 @@
 
 # gmapping_navigation
-#### The code is to implement 2-D navigation based on ROS navigation_stack, kobuki robot, and Asus proxion live RGB-D camera.The code will implement a fake-laser with the depth image data of camera.
+#### The code is for the implementation of 2-D navigation based on ROS navigation_stack, kobuki robot, and Asus proxion live RGB-D camera. The code will utilize a fake-laser with the depth image data of camera.
 
 ## Prerequisite
 #### hardware 
-- robot which provide odom message to ROS
+- robot which publishes odometry message to ROS
 - RGB-D camera
 #### software 
 - ROS kinetic (should also works on other version)
-- ROS navigtion_stack 
+- ROS navigation_stack 
 - openni2
 - kuboki robot package 
 - depthimage_to_laser package
