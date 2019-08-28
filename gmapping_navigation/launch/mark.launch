@@ -1,4 +1,0 @@
-<launch> 
-	<node pkg="gmapping_navigation" type="input" name="user_input" output="screen" />
-	<node pkg="gmapping_navigation" type="save_client" name="location_client" output="screen" />
-</launch>
